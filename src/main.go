@@ -22,9 +22,9 @@ func main() {
 		for _, font := range fontList {
 			fmt.Printf("\n\nFont %q\n", font)
 			msg.Fnt = font
-			cprint(msg)
+			printMessage(msg)
 		}
 	} else {
-		cprint(msg)
+		printMessage(msg)
 	}
 }

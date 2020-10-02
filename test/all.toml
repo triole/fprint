@@ -1,3 +1,6 @@
 text = "hello world"
 colour = "red"
 font = "big"
+
+pretext = "i just wanted to say..."
+posttext = "booom!!"

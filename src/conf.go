@@ -39,6 +39,12 @@ func pushArgsIntoConfig(msg tMessage) tMessage {
 	if *argsFont != "" {
 		msg.Fnt = *argsFont
 	}
+	if *argsPreText != "" {
+		msg.Txt = *argsPreText
+	}
+	if *argsPostText != "" {
+		msg.Txt = *argsPostText
+	}
 
 	// apply default values if anything is missing
 	if msg.Txt == "" {
