@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	figure "github.com/triole/go-figure"
 )
@@ -11,13 +12,19 @@ func main() {
 
 	if *argsList == true {
 		figure.PrintFontList()
-	} else if *argsExample == true {
+		os.Exit(0)
+	}
+
+	msg := initConfig(*argsConfig)
+
+	if *argsExample == true {
 		fontList := figure.GetFontList()
 		for _, font := range fontList {
 			fmt.Printf("\n\nFont %q\n", font)
-			cprint(*argsMessage, font, *argsColour)
+			msg.Fnt = font
+			cprint(msg)
 		}
 	} else {
-		cprint(*argsMessage, *argsFont, *argsColour)
+		cprint(msg)
 	}
 }
