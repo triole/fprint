@@ -9,13 +9,14 @@ import (
 func printMessage(msg tMessage) {
 	printIf(msg.Pre)
 	fig := figure.NewColorFigure(msg.Txt, msg.Fnt, msg.Col, true)
+	fmt.Printf("\n")
 	fig.Print()
 	printIf(msg.Post)
-	println("")
+	fmt.Printf("\n\n")
 }
 
 func printIf(s string) {
 	if s != "" {
-		fmt.Printf("\n%s\n\n", s)
+		fmt.Printf("\n%s\n", s)
 	}
 }
