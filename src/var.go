@@ -1,0 +1,32 @@
+package main
+
+import (
+	"olibs/environment"
+	"os"
+
+	kingpin "gopkg.in/alecthomas/kingpin.v2"
+)
+
+var (
+	BUILDTAGS      string
+	appName        = "aprint"
+	appMainversion = "0.1"
+	appDescription = "Ascii print"
+	env            = environment.Init(appName, appMainversion, appDescription, BUILDTAGS)
+
+	app         = kingpin.New(appName, appDescription)
+	argsMessage = app.Arg("message", "message to print").String()
+	argsColour  = app.Flag("colour", "text color").Short('c').Default("white").String()
+	argsFont    = app.Flag("font", "font").Short('f').Default("big").String()
+	argsList    = app.Flag("list", "list available fonts").Short('l').Default("false").Bool()
+	argsExample = app.Flag("example", "print message in all fonts available").Short('x').Default("false").Bool()
+)
+
+func argparse() {
+	// argparse
+	app.Version(env.AppInfoString)
+	app.VersionFlag.Short('V')
+	app.HelpFlag.Short('h')
+
+	kingpin.MustParse(app.Parse(os.Args[1:]))
+}

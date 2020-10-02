@@ -1,0 +1,7 @@
+.imdone/
+build/
+tmp/
+xcl/
+*.yml_
+
+**/bindata.go
