@@ -1,7 +1,6 @@
 package main
 
 import (
-	"olibs/environment"
 	"os"
 
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
@@ -10,9 +9,8 @@ import (
 var (
 	BUILDTAGS      string
 	appName        = "aprint"
-	appMainversion = "0.1"
+	appMainVersion = "0.1"
 	appDescription = "Ascii print"
-	env            = environment.Init(appName, appMainversion, appDescription, BUILDTAGS)
 
 	app          = kingpin.New(appName, appDescription)
 	argsMessage  = app.Arg("message", "message to print").String()
@@ -26,8 +24,12 @@ var (
 )
 
 func argparse() {
-	// argparse
-	app.Version(env.AppInfoString)
+	env := tEnv{
+		Name:        appName,
+		MainVersion: appMainVersion,
+		Description: appDescription,
+	}
+	app.Version(makeInfoString(env, parseBuildtags(BUILDTAGS)))
 	app.VersionFlag.Short('V')
 	app.HelpFlag.Short('h')
 
