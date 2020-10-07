@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 vars:
     TARGET_FOLDER: build
@@ -26,21 +26,22 @@ vars:
 
 tasks:
     default:
+        - task: build
+
+    build:
+        cmds:
+            - cmd: mkdir -p $(pwd)/{{.TARGET_FOLDER}}
+            - cmd: >-
+                CGO_ENABLED=0
+                go build -o $(pwd)/{{.TARGET_FOLDER}}/{{.APP_NAME}} src/*.go
+            - cmd: file $(pwd)/build/aprint
+    test:
+        cmds:
+            - cmd: go test -cover -bench=. {{.SOURCE_FOLDER}}/*.go
+
+    xbuild:
         cmds:
             - cmd: >-
                 bob -b V -c
                 -l '_subversion: {{.GIT_COMMIT_NO}}, Author: {{.AUTHOR}},
                 Build date: {{.DATE}}, Git hash: {{.GIT_COMMIT_HASH}}'
-
-    bindata:
-        cmds:
-            - cmd: go-bindata -o {{.SOURCE_FOLDER}}/config/bindata.go data/...
-            - cmd: sd "package main" "package config" "{{.SOURCE_FOLDER}}/config/bindata.go"
-
-    test:
-        cmds:
-            - cmd: go test -cover -bench=. {{.SOURCE_FOLDER}}/*.go
-
-    debug_bindata:
-        cmds:
-            - cmd: go-bindata -debug -o {{.SOURCE_FOLDER}}/bindata.go data/...
