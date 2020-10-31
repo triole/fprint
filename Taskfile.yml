@@ -26,9 +26,13 @@ vars:
 
 tasks:
     default:
-        - task: build
+        desc: default task, test and build
+        cmds:
+            - task: test
+            - task: build
 
     build:
+        desc: build using simple 'go build'
         cmds:
             - cmd: mkdir -p $(pwd)/{{.TARGET_FOLDER}}
             - cmd: >-
@@ -41,10 +45,12 @@ tasks:
                 src/*.go
             - cmd: file $(pwd)/build/aprint
     test:
+        desc: run tests
         cmds:
             - cmd: go test -cover -bench=. {{.SOURCE_FOLDER}}/*.go
 
     xbuild:
+        desc: extended build utilising my personal build script 'bob'
         cmds:
             - cmd: >-
                 bob -b V -c

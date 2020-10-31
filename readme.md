@@ -34,4 +34,7 @@ go build
 
 # or that
 task
+
+# remember what you can do if you have 'task'
+task -l
 ```
