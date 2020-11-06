@@ -1,4 +1,4 @@
-# Aprint
+# Aprint ![goreleaser](https://github.com/triole/aprint/workflows/goreleaser/badge.svg)
 
 <!--- mdtoc: toc begin -->
 
