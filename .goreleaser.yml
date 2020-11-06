@@ -1,0 +1,50 @@
+before:
+  hooks:
+    - mkdir -p builddir
+    - go get github.com/triole/go-figure
+    - go get github.com/BurntSushi/toml
+    - go get gopkg.in/alecthomas/kingpin.v2
+
+builds:
+- env:
+  - CGO_ENABLED=0
+  dir: ./src
+  goos:
+  - darwin
+  - linux
+  - freebsd
+  goarch:
+  - amd64
+  - arm
+  - arm64
+  goarm:
+  - 5
+  - 6
+  - 7
+  ignore:
+    - goos: darwin
+      goarch: arm
+    - goos: darwin
+      goarch: ppc64le
+    - goos: darwin
+      goarch: s390x
+    - goos: freebsd
+      goarch: ppc64le
+    - goos: freebsd
+      goarch: s390x
+    - goos: freebsd
+      goarch: arm
+      goarm: 5
+  flags:
+  - -trimpath
+  ldflags:
+  - -s -w -X main.build={{.Version}}
+
+archives:
+  - format_overrides:
+      - goos: windows
+        format: zip
+    replacements:
+      darwin: mac
+checksum:
+  algorithm: sha512
