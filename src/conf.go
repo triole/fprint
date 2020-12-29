@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
-	"os"
 
 	"github.com/BurntSushi/toml"
 )
@@ -18,14 +16,10 @@ func initConfig(fil string) (msg tMessage) {
 
 func readConfigFile(fil string) (msg tMessage) {
 	content, err := ioutil.ReadFile(fil)
-	if err != nil {
-		fmt.Printf("Unable to read file. %s\n", err)
-		os.Exit(1)
-	}
-	if _, err := toml.Decode(string(content), &msg); err != nil {
-		fmt.Printf("Unable to decode. %s\n", err)
-		os.Exit(1)
-	}
+	checkx(err, "Unable to read file")
+
+	_, err = toml.Decode(string(content), &msg)
+	checkx(err, "Unable to decode")
 	return
 }
 
