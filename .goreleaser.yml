@@ -1,9 +1,7 @@
 before:
   hooks:
     - mkdir -p builddir
-    - go get github.com/triole/go-figure
-    - go get github.com/BurntSushi/toml
-    - go get gopkg.in/alecthomas/kingpin.v2
+    - go mod download
 
 builds:
 - env:
