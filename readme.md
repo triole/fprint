@@ -9,15 +9,13 @@
 
 ## Synopsis
 
-A simple shell tool to print text strings to ascii art. Basically a wrapper of my fork of [go-figure](https://github.com/common-nighthawk/go-figure).
+Figlet print: a simple shell tool to print text strings with figlet fonts. Basically a wrapper of my fork of [go-figure](https://github.com/common-nighthawk/go-figure).
 
 ### Usage
 
 ```shell
 fprint hello
-
 # or
-
 echo hello | fprint
 ```
 
