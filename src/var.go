@@ -8,7 +8,7 @@ import (
 
 var (
 	BUILDTAGS      string
-	appName        = "aprint"
+	appName        = "fprint"
 	appMainVersion = "0.1"
 	appDescription = "Ascii print"
 

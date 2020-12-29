@@ -43,7 +43,7 @@ tasks:
                 Build date: {{.DATE}}, Git hash: {{.GIT_COMMIT_HASH}}
                 }'"
                 src/*.go
-            - cmd: file $(pwd)/build/aprint
+            - cmd: file $(pwd)/build/fprint
     test:
         desc: run tests
         cmds:

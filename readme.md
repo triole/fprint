@@ -1,8 +1,9 @@
-# Aprint ![goreleaser](https://github.com/triole/aprint/workflows/goreleaser/badge.svg)
+# Fprint ![goreleaser](https://github.com/triole/fprint/workflows/goreleaser/badge.svg)
 
 <!--- mdtoc: toc begin -->
 
 1.	[Synopsis](#synopsis)
+	1.	[Usage](#usage)
 2.	[Config files](#config-files)
 3.	[Build](#build)<!--- mdtoc: toc end -->
 
@@ -10,7 +11,17 @@
 
 A simple shell tool to print text strings to ascii art. Basically a wrapper of my fork of [go-figure](https://github.com/common-nighthawk/go-figure).
 
-Run `aprint -h` to find out what it can do.
+### Usage
+
+```shell
+fprint hello
+
+# or
+
+echo hello | fprint
+```
+
+Run `fprint -h` to find out what it can do.
 
 ## Config files
 
