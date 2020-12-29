@@ -8,7 +8,12 @@ import (
 )
 
 func main() {
+	stdin := getStdin()
 	argparse()
+
+	if *argsMessage == "" {
+		*argsMessage = stdin
+	}
 
 	if *argsList == true {
 		figure.PrintFontList()

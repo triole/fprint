@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"os"
 
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
@@ -22,6 +23,14 @@ var (
 	argsExample  = app.Flag("example", "print message in all fonts available").Short('x').Default("false").Bool()
 	argsConfig   = app.Flag("config", "load settings from config").Short('k').Default("").String()
 )
+
+func getStdin() (s string) {
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		s = scanner.Text()
+	}
+	return
+}
 
 func argparse() {
 	env := tEnv{
