@@ -1,2 +1,5 @@
-text = "hello world"
+text = [
+    "hello world"
+]
+
 colour = "red"

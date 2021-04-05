@@ -11,8 +11,11 @@ func main() {
 	stdin := getStdin()
 	argparse()
 
+	var msgArr []string
 	if *argsMessage == "" {
-		*argsMessage = stdin
+		msgArr = stdin
+	} else {
+		msgArr = []string{*argsMessage}
 	}
 
 	if *argsList == true {
@@ -20,7 +23,7 @@ func main() {
 		os.Exit(0)
 	}
 
-	msg := initConfig(*argsConfig)
+	msg := initConfig(*argsConfig, msgArr)
 
 	if *argsExample == true {
 		fontList := figure.GetFontList()

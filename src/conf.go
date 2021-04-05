@@ -2,53 +2,55 @@ package main
 
 import (
 	"io/ioutil"
+	"os"
 
 	"github.com/BurntSushi/toml"
 )
 
-func initConfig(fil string) (msg tMessage) {
-	if fil != "" {
-		msg = readConfigFile(fil)
+var (
+	defaultMsg = "sphinx of black quartz"
+)
+
+func setVal(itf interface{}, alt string, def interface{}) (r string) {
+	switch v := itf.(type) {
+	case string:
+		r = v
 	}
-	msg = pushArgsIntoConfig(msg)
+	if r == "" && alt != "" {
+		r = alt
+	}
+	if r == "" && def != nil {
+		r = def.(string)
+	}
 	return
 }
 
-func readConfigFile(fil string) (msg tMessage) {
-	content, err := ioutil.ReadFile(fil)
-	checkx(err, "Unable to read file")
+func initConfig(fil string, msgArr []string) (conf tConf) {
+	var ctoml tConfToml
 
-	_, err = toml.Decode(string(content), &msg)
-	checkx(err, "Unable to decode")
+	if _, err := os.Stat(fil); err == nil {
+		content, err := ioutil.ReadFile(fil)
+		checkx(err, "Unable to read file "+fil)
+		_, err = toml.Decode(string(content), &ctoml)
+		checkx(err, "Unable to decode "+fil)
+	}
+
+	conf.Col = setVal(ctoml.Col, *argsColour, "white")
+	conf.Fnt = setVal(ctoml.Fnt, *argsFont, "big")
+	conf.Pre = setVal(ctoml.Pre, *argsPreText, nil)
+	conf.Post = setVal(ctoml.Post, *argsPostText, nil)
+
+	if ctoml.Txt != nil {
+		for _, el := range ctoml.Txt {
+			conf.Txt = append(conf.Txt, el.(string))
+		}
+	}
+	if len(msgArr) != 0 {
+		conf.Txt = msgArr
+	}
+	if len(conf.Txt) == 0 {
+		conf.Txt = []string{defaultMsg}
+	}
+
 	return
-}
-
-func pushArgsIntoConfig(msg tMessage) tMessage {
-	if *argsMessage != "" {
-		msg.Txt = *argsMessage
-	}
-	if *argsColour != "" {
-		msg.Col = *argsColour
-	}
-	if *argsFont != "" {
-		msg.Fnt = *argsFont
-	}
-	if *argsPreText != "" {
-		msg.Pre = *argsPreText
-	}
-	if *argsPostText != "" {
-		msg.Post = *argsPostText
-	}
-
-	// apply default values if anything is missing
-	if msg.Txt == "" {
-		msg.Txt = "sphinx of black quartz"
-	}
-	if msg.Col == "" {
-		msg.Col = "white"
-	}
-	if msg.Fnt == "" {
-		msg.Fnt = "big"
-	}
-	return msg
 }

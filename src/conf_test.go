@@ -1,22 +1,25 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestReadConfig(t *testing.T) {
 	AssertReadConfig("../test/all.toml", []string{"hello world", "red", "big"}, t)
-	AssertReadConfig("../test/no_font.toml", []string{"hello world", "red", ""}, t)
-	AssertReadConfig("../test/only_col.toml", []string{"", "red", ""}, t)
-	AssertReadConfig("../test/only_text.toml", []string{"hello world", "", ""}, t)
+	AssertReadConfig("../test/no_font.toml", []string{"hello world", "red", "big"}, t)
+	AssertReadConfig("../test/only_col.toml", []string{defaultMsg, "red", "big"}, t)
+	AssertReadConfig("../test/only_text.toml", []string{"hello world", "white", "big"}, t)
+	AssertReadConfig("../test/empty.toml", []string{defaultMsg, "white", "big"}, t)
 }
 
 func AssertReadConfig(fil string, arr []string, t *testing.T) {
-	asr := tMessage{
-		Txt: arr[0],
+	asr := tConf{
+		Txt: []string{arr[0]},
 		Col: arr[1],
 		Fnt: arr[2],
 	}
-	msg := readConfigFile(fil)
-	if msg.Txt != asr.Txt || msg.Col != asr.Col || msg.Fnt != asr.Fnt {
+	msg := initConfig(fil, []string{})
+	if msg.Txt[0] != asr.Txt[0] || msg.Col != asr.Col || msg.Fnt != asr.Fnt {
 		t.Errorf("Message assert failed for %q: %q != %q", fil, msg, asr)
 	}
 }

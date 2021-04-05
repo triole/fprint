@@ -10,7 +10,7 @@ var (
 	BUILDTAGS      string
 	appName        = "fprint"
 	appMainVersion = "0.1"
-	appDescription = "Ascii print"
+	appDescription = "figlet print"
 
 	app          = kingpin.New(appName, appDescription)
 	argsMessage  = app.Arg("message", "message to print").String()

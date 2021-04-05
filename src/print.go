@@ -6,11 +6,13 @@ import (
 	figure "github.com/triole/go-figure"
 )
 
-func printMessage(msg tMessage) {
+func printMessage(msg tConf) {
 	printIf(msg.Pre)
-	fig := figure.NewColorFigure(msg.Txt, msg.Fnt, msg.Col, true)
-	fmt.Printf("\n")
-	fig.Print()
+	for _, el := range msg.Txt {
+		fig := figure.NewColorFigure(el, msg.Fnt, msg.Col, true)
+		fmt.Printf("\n")
+		fig.Print()
+	}
 	printIf(msg.Post)
 	fmt.Printf("\n\n")
 }

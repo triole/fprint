@@ -1,9 +1,17 @@
 package main
 
-type tMessage struct {
-	Txt  string `toml:"text"`
-	Col  string `toml:"colour"`
-	Fnt  string `toml:"font"`
-	Pre  string `toml:"pretext"`
-	Post string `toml:"posttext"`
+type tConfToml struct {
+	Txt  []interface{} `toml:"text"`
+	Col  interface{}   `toml:"colour"`
+	Fnt  interface{}   `toml:"font"`
+	Pre  interface{}   `toml:"pretext"`
+	Post interface{}   `toml:"posttext"`
+}
+
+type tConf struct {
+	Txt  []string
+	Col  string
+	Fnt  string
+	Pre  string
+	Post string
 }
