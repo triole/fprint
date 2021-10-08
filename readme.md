@@ -1,11 +1,11 @@
-# Fprint ![goreleaser](https://github.com/triole/fprint/workflows/goreleaser/badge.svg)
+# Fprint ![goreleaser](https://github.com/triole/fprint/workflows/build/badge.svg)
 
 <!--- mdtoc: toc begin -->
 
-1.	[Synopsis](#synopsis)
-	1.	[Usage](#usage)
-2.	[Config files](#config-files)
-3.	[Build](#build)<!--- mdtoc: toc end -->
+1. [Synopsis](#synopsis)
+   1. [Usage](#usage)
+2. [Config files](#config-files)
+3. [Build](#build)<!--- mdtoc: toc end -->
 
 ## Synopsis
 
