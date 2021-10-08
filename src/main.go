@@ -9,23 +9,23 @@ import (
 
 func main() {
 	stdin := getStdin()
-	argparse()
+	parseArgs()
 
 	var msgArr []string
-	if *argsMessage == "" {
+	if CLI.Message == "" {
 		msgArr = stdin
 	} else {
-		msgArr = []string{*argsMessage}
+		msgArr = []string{CLI.Message}
 	}
 
-	if *argsList == true {
+	if CLI.ListFonts == true {
 		figure.PrintFontList()
 		os.Exit(0)
 	}
 
-	msg := initConfig(*argsConfig, msgArr)
+	msg := initConfig(CLI.Config, msgArr)
 
-	if *argsExample == true {
+	if CLI.PrintExamples == true {
 		fontList := figure.GetFontList()
 		for _, font := range fontList {
 			fmt.Printf("\n\nFont %q\n", font)

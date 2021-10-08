@@ -35,10 +35,10 @@ func initConfig(fil string, msgArr []string) (conf tConf) {
 		checkx(err, "Unable to decode "+fil)
 	}
 
-	conf.Col = setVal(ctoml.Col, *argsColour, "white")
-	conf.Fnt = setVal(ctoml.Fnt, *argsFont, "big")
-	conf.Pre = setVal(ctoml.Pre, *argsPreText, nil)
-	conf.Post = setVal(ctoml.Post, *argsPostText, nil)
+	conf.Col = setVal(ctoml.Col, CLI.Colour, "white")
+	conf.Fnt = setVal(ctoml.Fnt, CLI.Font, "big")
+	conf.Pre = setVal(ctoml.Pre, CLI.PreText, nil)
+	conf.Post = setVal(ctoml.Post, CLI.PostText, nil)
 
 	if ctoml.Txt != nil {
 		for _, el := range ctoml.Txt {
