@@ -3,15 +3,15 @@
 <!--- mdtoc: toc begin -->
 
 1. [Synopsis](#synopsis)
-   1. [Usage](#usage)
-2. [Config files](#config-files)
-3. [Build](#build)<!--- mdtoc: toc end -->
+2. [Usage](#usage)
+3. [Config files](#config-files)
+4. [Build](#build)<!--- mdtoc: toc end -->
 
 ## Synopsis
 
 Figlet print: a simple shell tool to print text strings with figlet fonts. Basically a wrapper of my fork of [go-figure](https://github.com/common-nighthawk/go-figure).
 
-### Usage
+## Usage
 
 ```shell
 fprint hello
