@@ -2,7 +2,7 @@
     "srcDir": ".",
     "destDir": "/tmp/.on-save",
     "files": "**",
-    "command": "coda -t '${srcFile}'",
+    "command": "coda '${srcFile}'",
     "showOutput": false,
     "showError": false
 }]
